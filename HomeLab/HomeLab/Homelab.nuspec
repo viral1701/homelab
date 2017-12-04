@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Homelab</id>
+    <version>0.1.0</version>
+    <authors>Viral Patel</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Homelab</description>
+  <tags>Homelab Example</tags>
+    </metadata>
+  <files>
+        <file src="bin\Release\**" target="" />
+    </files>
+</package>

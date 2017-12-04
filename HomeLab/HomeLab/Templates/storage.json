@@ -15,7 +15,7 @@
     }
   },
   "variables": {
-    "storageaccountName": "[concat('storageaccount', uniqueString(resourceGroup().id))]"
+    "storageaccountName": "viralteststorage01"
   },
   "resources": [
     {
