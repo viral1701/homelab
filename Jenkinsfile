@@ -1,13 +1,13 @@
 node('windows') {
 
     {
-    stage 'Checkout'
+    stage ('Checkout')
     Checkout scm
 
     }
 
     {
-        stage 'Build'
+        stage ('Build')
         powershell 'Build.ps1'
         }
 }
