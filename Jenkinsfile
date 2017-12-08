@@ -1,9 +1,13 @@
-node{
+node('windows') {
 
+    {
     stage 'Checkout'
     Checkout scm
 
-    stage 'Build'
+    }
 
-    bat
+    {
+        stage 'Build'
+        powershell 'Build.ps1'
+        }
 }
