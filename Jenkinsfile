@@ -9,6 +9,12 @@ node('windows') {
 
 
         stage ('Build') {
-        powershell 'Build.ps1'
+        posh 'Build.ps1'
         }
+
+def posh(cmd) {
+bat 'powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -Command "& ' + cmd + '"'
+}
+
+
 }
