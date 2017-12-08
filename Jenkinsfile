@@ -9,10 +9,10 @@ node('windows') {
 
 
         stage ('Build') {
-        powershell ''''
+        powershell '''
 
-            $VAR_A = "test"
-            Write-Host "MyResult: '$VAR_A'"
+            $VAR_A = 'test'
+            Write-Host "My Result: '$VAR_A'"
 
             '''
         }
