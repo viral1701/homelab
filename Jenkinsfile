@@ -9,7 +9,7 @@ node('windows') {
 
 
         stage ('Build') {
-        powershell -File Build.ps1
+        powershell & '.\Build.ps1'
         }
 
 
