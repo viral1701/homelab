@@ -2,7 +2,8 @@ node('windows') {
 
 
     stage ('Checkout') {
-    Checkout scm
+
+    checkout scm
 
     }
 
