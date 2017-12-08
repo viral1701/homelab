@@ -2,6 +2,6 @@ $MSBuildPath = "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\M
 $BuildConfiguration = "Release"
 $MsBuildLoggingVerbose = "normal"
 $MsBuild = "/maxcpucount"
+$SolutionPath = ".\HomeLab\HomeLab.sln"
 
-
-& $MSBuildPath /p:Configuration=$BuildConfiguration /verbosity:$MsBuildLoggingVerbose $MsBuild
+& $MSBuildPath $SolutionPath /p:Configuration=$BuildConfiguration /verbosity:$MsBuildLoggingVerbose $MsBuild
