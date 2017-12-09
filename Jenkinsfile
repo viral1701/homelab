@@ -13,7 +13,7 @@ def solutionfile = "${env.WORKSPACE}\\HomeLab\\HomeLab.sln"
 
 
         stage ('Build') {
-        bat 'echo ${solutionfile}'
+        bat "echo ${solutionfile}"
         }
 
 
