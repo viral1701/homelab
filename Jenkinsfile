@@ -16,7 +16,7 @@ def nuspecfile = "${env.WORKSPACE}\\Provision.Storage.nuspec"
         }
 
         stage ('Nuget Pack') {
-            bat "\"C:\\Nuget\\Nuget.exe\" pack ${nuspecfile} -Version 1.0.0"
+            bat "\"C:\\Nuget\\Nuget.exe\" pack ${nuspecfile} -Version ${buildversion}"
         }
 
 
