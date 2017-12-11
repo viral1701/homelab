@@ -25,7 +25,7 @@ def octopusurl = "http://octopus.home.net"
             steps{
                 withCredentials([string(credentialsId: 'OctoAPI', variable: 'APIKey')]){
 
-                    bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${apikey} -Source ${octopusurl}"
+                    bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${APIKey} -Source ${octopusurl}"
                 }
             }
 
