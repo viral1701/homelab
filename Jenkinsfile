@@ -22,10 +22,10 @@ def octopusurl = "http://octopus.home.net"
         }
 
         stage ('Nuget Publish'){
-            steps{
-                withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
-                    bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${APIKey} -Source ${octopusurl}"
-                }
+
+            withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
+            bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${APIKey} -Source ${octopusurl}"
+
             }
 
                 }
