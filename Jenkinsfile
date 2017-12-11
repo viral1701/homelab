@@ -1,6 +1,6 @@
 node('windows') {
 
-def buildversion = "1.0." + $env.BUILD_NUMBER
+def buildversion = "1.0." + "${env.BUILD_NUMBER}"
 def solutionfile = "${env.WORKSPACE}\\HomeLab\\HomeLab.sln"
 def nuspecfile = "${env.WORKSPACE}\\Provision.Storage.nuspec"
 
