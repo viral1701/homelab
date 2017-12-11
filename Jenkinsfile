@@ -12,7 +12,6 @@ def octopusurl = "http://octopus.home.net/nuget/packages"
 
     }
 
-
         stage ('Build') {
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
