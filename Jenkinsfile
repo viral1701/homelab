@@ -30,11 +30,11 @@ def octopusurl = "http://octopus.home.net/nuget/packages"
                 }
 
         stage ('Create Build Output'){
-            powershell '''
+            powershell """
             New-Item output -Type Directory
-            New-Item ${env.WORKSPACE}\\version.txt -Type file
+            New-Item "${env.WORKSPACE}\\version.txt" -Type file
 
-            '''
+            """
         }
 
 
