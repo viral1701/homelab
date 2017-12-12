@@ -29,5 +29,12 @@ def octopusurl = "http://octopus.home.net/nuget/packages"
 
                 }
 
+        stage ('Create Build Output'){
+            powershell '''
+            New-Item output -Type Directory
+
+            '''
+        }
+
 
 }
