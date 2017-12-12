@@ -31,7 +31,7 @@ def outputdir = "output"
                 }
 
         stage ('Create Build Output'){
-            bat "\"echo ${buildversion}\" > version.txt"
+            bat "\"echo ${buildversion} > version.txt\""
         }
 
 
