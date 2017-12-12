@@ -14,7 +14,7 @@ def outputdir = "output"
     }
 
         stage ('Create Build Output'){
-            bat """${buildversion}" > version.txt"
+            bat "\"${buildversion} > version.txt\""
         }
 
         stage ('Build') {
