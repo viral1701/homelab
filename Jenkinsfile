@@ -13,11 +13,6 @@ def outputdir = "output"
 
     }
 
-        stage ('Create Build Output'){
-            //bat "\"${buildversion} > version.txt\""
-            cmd /c "${buildversion}" > version.txt
-        }
-
         stage ('Build') {
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
