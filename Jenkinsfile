@@ -33,7 +33,7 @@ def outputdir = "output"
         stage ('Create Build Output'){
             powershell '''
             New-Item output -Type Directory
-            New-Item '$env:outputdir\\version.txt' -Type file
+            New-Item "$env:outputdir\\version.txt" -Type file
 
 
 
