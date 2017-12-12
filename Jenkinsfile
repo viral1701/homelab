@@ -5,6 +5,7 @@ def solutionfile = "${env.WORKSPACE}\\HomeLab\\HomeLab.sln"
 def nuspecfile = "${env.WORKSPACE}\\Provision.Storage.nuspec"
 def nugetpackage = "${env.WORKSPACE}\\Provision.Storage.${buildversion}.nupkg"
 def octopusurl = "http://octopus.home.net/nuget/packages"
+def outputdir = "output"
 
     stage ('Checkout') {
 
@@ -30,11 +31,14 @@ def octopusurl = "http://octopus.home.net/nuget/packages"
                 }
 
         stage ('Create Build Output'){
-            powershell """
+            powershell '''
             New-Item output -Type Directory
-            New-Item "${env.WORKSPACE}\\version.txt" -Type file
+            New-Item "$env:outputdir\version.txt" -Type file
 
-            """
+
+
+
+            '''
         }
 
 
