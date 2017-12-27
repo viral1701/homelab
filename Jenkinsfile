@@ -32,7 +32,14 @@ def outputdir = "output"
 
         stage ('OutPut Build Number'){
 
-            powershell "$version = ${buildversion} $version | Out-File .\\output.txt"
+            powershell '''
+
+            $nupkg = Get-ChildItem | Where-Object {$_.Extension -eq ".nupkg"}
+            $FileName = $nupkg.Name
+            $FileName = $FileName.TrimEnd(".nupkg")
+            $FileName = $FileName.TrimStart("Provision.Storage")
+            $FileName | Out-File ".\\output.txt"
+            '''
         }
 
 
