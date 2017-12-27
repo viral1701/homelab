@@ -42,5 +42,10 @@ def outputdir = "output"
             '''
         }
 
+        stage ('Archive build version number'){
+            // Archive Build Output Number
+            archiveArtifacts artifacts: 'output.txt'
+        }
+
 
 }
