@@ -28,7 +28,12 @@ def outputdir = "output"
 
             }
 
-                }
+        }
+
+        stage ('OutPut Build Number'){
+
+            powershell "Write-Output ${buildversion}"
+        }
 
 
 }
