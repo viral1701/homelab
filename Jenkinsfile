@@ -32,7 +32,10 @@ def outputdir = "output"
 
         stage ('OutPut Build Number'){
 
-            powershell "Write-Output ${buildversion}"
+            powershell "
+                        Write-Output ${buildversion}
+                        ${buildversion} | Out-File .\\output.txt
+                        "
         }
 
 
