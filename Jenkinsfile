@@ -6,6 +6,7 @@ def nuspecfile = "${env.WORKSPACE}\\Provision.Storage.nuspec"
 def nugetpackage = "${env.WORKSPACE}\\Provision.Storage.${buildversion}.nupkg"
 def octopusurl = "http://octopus.home.net/nuget/packages"
 def outputdir = "output"
+def projectname = "Provision.Storage"
 
     stage ('Checkout') {
 
@@ -45,6 +46,12 @@ def outputdir = "output"
         stage ('Archive build version number'){
             // Archive Build Output Number
             archiveArtifacts artifacts: 'output.txt'
+        }
+
+        stage ('Create Octopus Release'){
+           withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
+               powershell "\"C:\\OctopusTools\\tools\\Octo.exe\" create-release --project=${Provision.Storage} --releaseNumber=$${buildversion} --server ${octopusurl} --apiKey ${APIKey}"
+           }
         }
 
 
