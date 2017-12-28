@@ -41,7 +41,6 @@ def projectname = "Provision.Storage"
             $FileName = $FileName.TrimEnd(".nupkg")
             $FileName = $FileName.TrimStart("Provision.Storage")
             $FileName | Out-File ".\\output.txt"
-            'Write-Host This Is The Build Number.... ${buildversion}'
             '''
         }
 
