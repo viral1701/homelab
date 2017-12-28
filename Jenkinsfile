@@ -50,7 +50,7 @@ def projectname = "Provision.Storage"
 
         stage ('Create Octopus Release'){
            withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
-               powershell "\"C:\\OctopusTools\\tools\\Octo.exe\" create-release --project=${Provision.Storage} --releaseNumber=$${buildversion} --server ${octopusurl} --apiKey ${APIKey}"
+               powershell "\"C:\\OctopusTools\\tools\\Octo.exe\" create-release --project=${Provision.Storage} --releaseNumber=${buildversion} --server ${octopusurl} --apiKey ${APIKey}"
            }
         }
 
