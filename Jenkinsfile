@@ -4,7 +4,8 @@ def buildversion = "1.0." + "${env.BUILD_NUMBER}"
 def solutionfile = "${env.WORKSPACE}\\HomeLab\\HomeLab.sln"
 def nuspecfile = "${env.WORKSPACE}\\Provision.Storage.nuspec"
 def nugetpackage = "${env.WORKSPACE}\\Provision.Storage.${buildversion}.nupkg"
-def octopusurl = "http://octopus.home.net/nuget/packages"
+def nugetrestore = "http://octopus.home.net/nuget/packages"
+def octopusurl = "http://octopus.home.net/"
 def outputdir = "output"
 def projectname = "Provision.Storage"
 
@@ -25,7 +26,7 @@ def projectname = "Provision.Storage"
         stage ('Nuget Publish'){
 
             withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
-            bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${APIKey} -Source ${octopusurl}"
+            bat "\"C:\\Nuget\\Nuget.exe\" push ${nugetpackage} -APiKey ${APIKey} -Source ${nugetrestore}"
 
             }
 
@@ -50,7 +51,7 @@ def projectname = "Provision.Storage"
 
         stage ('Create Octopus Release'){
            withCredentials([string(credentialsId: 'OctopusAPIKey', variable: 'APIKey')]){
-               powershell "\"C:\\OctopusTools\\tools\\Octo.exe\" create-release --project=${Provision.Storage} --releaseNumber=${buildversion} --server ${octopusurl} --apiKey ${APIKey}"
+               powershell "\"C:\\OctopusTools\\tools\\Octo.exe\" create-release --project=${projectname} --releaseNumber=${buildversion} --server ${octopusurl} --apiKey ${APIKey}"
            }
         }
 
