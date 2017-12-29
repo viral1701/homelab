@@ -18,7 +18,8 @@ def projectname = "Provision.Storage"
         stage ('Output BuildNumber'){
             powershell """
                     Write-Host "This Is The Build Number ${buildversion}"
-                    ${buildnumber} | Out-File ".\\output.txt"
+                    $buildnumber = ${buildnumber}
+                    $env:buildnumber | Out-File ".\\output.txt"
             """
         }
 
