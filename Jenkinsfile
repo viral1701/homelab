@@ -19,17 +19,6 @@ def projectname = "Provision.Storage"
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
 
-        stage ('test'){
-            withEnv(["buildnumber=${buildversion}"]){
-                powershell '''
-                    Write-Output "My Build Number Is $env:buildnumber"
-
-            '''
-            }
-
-        }
-
-
         stage ('Nuget Pack') {
             bat "\"C:\\Nuget\\Nuget.exe\" pack ${nuspecfile} -Version ${buildversion}"
         }
@@ -43,16 +32,15 @@ def projectname = "Provision.Storage"
 
         }
 
-        stage ('OutPut Build Number'){
+        stage ('Output Build Number'){
+            withEnv(["buildnumber=${buildversion}"]){
+                powershell '''
+                    Write-Output "My Build Number Is $env:buildnumber"
+                    $env:buildnumber | Out-File  ".\\output.txt"
 
-            powershell '''
-
-            $nupkg = Get-ChildItem | Where-Object {$_.Extension -eq ".nupkg"}
-            $FileName = $nupkg.Name
-            $FileName = $FileName.TrimEnd(".nupkg")
-            $FileName = $FileName.TrimStart("Provision.Storage")
-            $FileName | Out-File ".\\output.txt"
             '''
+            }
+
         }
 
         stage ('Archive build version number'){
