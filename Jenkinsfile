@@ -15,14 +15,6 @@ def projectname = "Provision.Storage"
 
     }
 
-        stage ('Output BuildNumber'){
-            powershell """
-                    Write-Host "This Is The Build Number ${buildversion}"
-                    $buildnumber = ${buildnumber}
-                    $env:buildnumber | Out-File ".\\output.txt"
-            """
-        }
-
         stage ('Build') {
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
@@ -41,17 +33,17 @@ def projectname = "Provision.Storage"
 
         }
 
-        //stage ('OutPut Build Number'){
+        stage ('OutPut Build Number'){
 
-          //  powershell '''
+            powershell '''
 
-            //$nupkg = Get-ChildItem | Where-Object {$_.Extension -eq ".nupkg"}
-            //$FileName = $nupkg.Name
-            //$FileName = $FileName.TrimEnd(".nupkg")
-            //$FileName = $FileName.TrimStart("Provision.Storage")
-            //$FileName | Out-File ".\\output.txt"
-            //'''
-        //}
+            $nupkg = Get-ChildItem | Where-Object {$_.Extension -eq ".nupkg"}
+            $FileName = $nupkg.Name
+            $FileName = $FileName.TrimEnd(".nupkg")
+            $FileName = $FileName.TrimStart("Provision.Storage")
+            $FileName | Out-File ".\\output.txt"
+            '''
+        }
 
         stage ('Archive build version number'){
             // Archive Build Output Number
