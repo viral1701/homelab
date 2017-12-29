@@ -19,6 +19,15 @@ def projectname = "Provision.Storage"
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
 
+        stage ('test'){
+            withEnv(["buildnumber=1.0." + "${env.BUILD_NUMBER}"])
+            powershell '''
+
+            Write-Host "My Build Number Is '$env:buildnumber'"
+
+            '''
+        }
+
 
         stage ('Nuget Pack') {
             bat "\"C:\\Nuget\\Nuget.exe\" pack ${nuspecfile} -Version ${buildversion}"
