@@ -15,15 +15,16 @@ def projectname = "Provision.Storage"
 
     }
 
-        stage ('Build') {
-            bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
-        }
-
         stage ('Output BuildNumber'){
             powershell """
                     Write-Host This Is The Build Number ${buildversion}
             """
         }
+
+        stage ('Build') {
+            bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
+        }
+
 
         stage ('Nuget Pack') {
             bat "\"C:\\Nuget\\Nuget.exe\" pack ${nuspecfile} -Version ${buildversion}"
