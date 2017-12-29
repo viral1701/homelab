@@ -20,12 +20,13 @@ def projectname = "Provision.Storage"
         }
 
         stage ('test'){
-            withEnv(["buildnumber=1.0." + "${env.BUILD_NUMBER}"])
-            powershell '''
-
-            Write-Host "My Build Number Is '$env:buildnumber'"
+            withEnv(["buildnumber=1.0." + "${env.BUILD_NUMBER}"]){
+                powershell '''
+                    Write-Host "My Build Number Is '$env:buildnumber'"
 
             '''
+            }
+
         }
 
 
