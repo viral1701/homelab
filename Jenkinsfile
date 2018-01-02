@@ -21,7 +21,7 @@ def projectname = "Provision.Storage"
 
                 powershell '''
 
-                $pass = ConvertTo-SecureString "$($env:AzurePassword)" -AsPlainTest -Force
+                $pass = ConvertTo-SecureString "$($env:AzurePassword)" -AsPlainText -Force
                 $cred = New-Object System.Management.Automation.PSCredential ("$env:AzureUserName",$pass)
                 Login-AzureRmAccount -Credential $cred
 
