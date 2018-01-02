@@ -9,11 +9,26 @@ def octopusurl = "http://octopus.home.net/"
 def outputdir = "output"
 def projectname = "Provision.Storage"
 
-    stage ('Checkout') {
+        stage ('Checkout') {
 
-    checkout scm
+        checkout scm
 
-    }
+        }
+
+        stage ('Test ARM Templates'){
+            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AzureLogin',
+            usernameVariable: 'AzureUserName', passwordVariable: 'AzurePassword']]){
+
+                powershell '''
+
+                Write-Output "This is My UserName...... $env:AzureUserName"
+
+                '''
+
+            }
+
+
+        }
 
         stage ('Build') {
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
