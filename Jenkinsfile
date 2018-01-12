@@ -15,23 +15,6 @@ def projectname = "Provision.Storage"
 
         }
 
-        stage ('Test ARM Templates'){
-            withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'AzureLogin',
-            usernameVariable: 'AzureUserName', passwordVariable: 'AzurePassword']]){
-
-                powershell '''
-
-                $pass = ConvertTo-SecureString "$($env:AzurePassword)" -AsPlainText -Force
-                $cred = New-Object System.Management.Automation.PSCredential ("$env:AzureUserName",$pass)
-                Login-AzureRmAccount -Credential $cred
-
-                '''
-
-            }
-
-
-        }
-
         stage ('Build') {
             bat "\"${tool 'MSBuild'}\" ${solutionfile} /p:Configuration=Release /verbosity:normal /maxcpucount"
         }
